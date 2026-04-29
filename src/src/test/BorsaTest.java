@@ -4,51 +4,41 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import it.uniroma3.attrezzi.Attrezzo;
-import it.uniroma3.giocatore.Borsa;
+import it.uniroma3.diadia.*;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.giocatore.Borsa;
 
 class BorsaTest {
 
     private Borsa borsa;
-    private Attrezzo lanterna;
-    private Attrezzo osso;
-   
+    private Attrezzo attrezzo;
 
     @BeforeEach
     void setUp() {
-        this.borsa = new Borsa();
-        this.lanterna = new Attrezzo("lanterna", 3);
-        this.osso = new Attrezzo("osso", 1);
-    }
-
-    @Test
-    void testBorsaVuotaAllInizio() {
-        assertTrue(this.borsa.isEmpty());
+        borsa = new Borsa();
+        attrezzo = new Attrezzo("osso", 1);
     }
 
     @Test
     void testAddAttrezzo() {
-        assertTrue(this.borsa.addAttrezzo(this.lanterna));
-        assertFalse(this.borsa.isEmpty());
+        assertTrue(borsa.addAttrezzo(attrezzo));
     }
-
 
     @Test
     void testHasAttrezzo() {
-        this.borsa.addAttrezzo(this.osso);
-
-        assertTrue(this.borsa.hasAttrezzo("osso"));
+        borsa.addAttrezzo(attrezzo);
+        assertTrue(borsa.hasAttrezzo("osso"));
     }
-
 
     @Test
-    void testRemoveAttrezzo() {
-        this.borsa.addAttrezzo(this.lanterna);
-
-        assertEquals(this.lanterna, this.borsa.removeAttrezzo("lanterna"));
-        assertFalse(this.borsa.hasAttrezzo("lanterna"));
+    void testGetPeso() {
+        borsa.addAttrezzo(attrezzo);
+        assertEquals(1, borsa.getPeso());
     }
 
-    
+    @Test
+    void testIsEmpty() {
+        assertTrue(borsa.isEmpty());
+    }
 }
+

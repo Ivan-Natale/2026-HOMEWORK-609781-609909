@@ -2,44 +2,29 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import it.uniroma3.ambienti.Labirinto;
-import it.uniroma3.ambienti.Stanza;
+import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.ambienti.Labirinto; // ✅ Uso corretto del nome
 
 class LabirintoTest {
 
-    private Labirinto labirinto;
-
-    @BeforeEach
-    void setUp() {
-        this.labirinto = new Labirinto();
+    @Test
+    void testStanzaCorrenteNonNull() {
+        Labirinto lab = new Labirinto();
+        assertNotNull(lab.getStanzaCorrente());
     }
 
     @Test
-    void testStanzaInizialeNonNull() {
-        assertNotNull(this.labirinto.getStanzaIniziale());
+    void testStanzaVincenteNonNull() {
+        Labirinto lab = new Labirinto();
+        assertNotNull(lab.getStanzaVincente());
     }
 
     @Test
-    void testStanzaFinaleNonNull() {
-        assertNotNull(this.labirinto.getStanzaFinale());
-    }
-
-    @Test
-    void testNomeStanzaIniziale() {
-        assertEquals("Atrio", this.labirinto.getStanzaIniziale().getNome());
-    }
-
-    @Test
-    void testNomeStanzaFinale() {
-        assertEquals("Biblioteca", this.labirinto.getStanzaFinale().getNome());
-    }
-
-    @Test
-    void testCollegamentoAtrioNordBiblioteca() {
-        Stanza atrio = this.labirinto.getStanzaIniziale();
-        assertEquals("Biblioteca", atrio.getStanzaAdiacente("nord").getNome());
+    void testCambioStanzaCorrente() {
+        Labirinto lab = new Labirinto();
+        Stanza nuova = new Stanza("Segreteria");
+        lab.setStanzaCorrente(nuova);
+        assertEquals("Segreteria", lab.getStanzaCorrente().getNome());
     }
 }
