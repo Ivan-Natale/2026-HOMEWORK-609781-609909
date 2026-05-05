@@ -1,6 +1,6 @@
+package it.uniroma3.attrezzi;
 
-
-
+import it.uniroma3.ambienti.Stanza;
 
 /**
  * Una semplice classe che modella un attrezzo.
